@@ -37,6 +37,7 @@ function RegisterCultivation() {
             type="text"
             id="cultivationName"
             value={nameCultivation}
+            required
             onChange={(e) => setNameCultivation(e.target.value)}/>
         </div>
         <button type="submit">Agregar el cultivo</button>
