@@ -3,7 +3,9 @@
 Este proyecto esta orientado a solventar la necesidad de un sistema de riego automatico en el campus salitre por parte de la UGB.
 
 # Versiones usadas en el proyecto
+
 #### node 18.17.0
+
 #### npm  9.6.7
 
 ## Clonado del proyecto
