@@ -4,12 +4,14 @@ import { Box, Typography, TextField, Button } from '@mui/material';
 import axios from 'axios';
 import ErrorAlert from './ErrorAlert';
 import SuccessAlert from './SuccessAlert';
+import {  useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -19,8 +21,11 @@ function LoginForm() {
       .post('http://localhost:5000/api/login', { username, password })
       .then((response) => {
         // Handle the response as needed (e.g., set authentication token, redirect, etc.)
+        if(response.data.success) {
         console.log('Login successful:', response.data);
         setSuccessMessage('Inicio de sesión exitoso');
+        navigate('/register-crop');
+        }
       })
       .catch((error) => {
         console.error('Error during login:', error);

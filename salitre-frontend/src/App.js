@@ -9,8 +9,9 @@ import { Box, List, ListItem, ListItemText, ListItemIcon, Drawer, IconButton } f
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import LoginIcon from '@mui/icons-material/Login';
-
+import RegisterCultivation from './RegisterCultivation';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+
 
 
 function App() {
@@ -102,6 +103,7 @@ function App() {
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/" element={<Home />} />
+            <Route path="/register-crop" element={<RegisterCultivation />} />
           </Routes>
         </Box>
       </Box>

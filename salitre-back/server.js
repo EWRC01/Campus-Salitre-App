@@ -58,6 +58,19 @@ app.post('/api/register', (req, res) => {
   });
 });
 
+app.post('/api/registertypecultivation', (req, res) => {
+  const { nameCultivation } = req.body;
+  const query = 'INSERT INTO types_cultivation (Name_Type_Cultivation) VALUES (?)';
+  connection.query(query, [nameCultivation], (err, results) => {
+    if (err) {
+      console.error('Error during register the crop:', err);
+      res.status(500).json({error: 'Internal Server Error' });
+    } else {
+      res.json({ success:true });
+    }
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
