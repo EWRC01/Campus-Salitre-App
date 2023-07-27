@@ -1,53 +1,89 @@
 // src/LoginForm.js
 import React, { useState } from 'react';
+import { Box, Typography, TextField, Button } from '@mui/material';
 import axios from 'axios';
+import ErrorAlert from './ErrorAlert';
+import SuccessAlert from './SuccessAlert';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const handleLogin = (e) => {
     e.preventDefault();
 
     // Call the login API endpoint with the provided credentials
-    axios.post('http://localhost:5000/api/login', { username, password })
+    axios
+      .post('http://localhost:5000/api/login', { username, password })
       .then((response) => {
         // Handle the response as needed (e.g., set authentication token, redirect, etc.)
         console.log('Login successful:', response.data);
-        alert('Inicio de sesion exitoso')
+        setSuccessMessage('Inicio de sesión exitoso');
       })
       .catch((error) => {
         console.error('Error during login:', error);
-        alert('Error al iniciar sesion, revise el usuario o contraseña', error);
-        // Handle errors, such as displaying an error message to the user
+        setError('Error al iniciar sesión, revise el usuario o contraseña');
       });
   };
 
+  const containerStyle = {
+    maxWidth: '400px',
+    margin: '0 auto',
+    padding: '50px',
+    borderRadius: '10px',
+    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+    backgroundColor: '#ffffff',
+    userSelect: 'none', // Evitar la selección de contenido en el formulario
+  };
+
+  const headingStyle = {
+    fontSize: '36px',
+    color: '#333',
+    marginBottom: '20px',
+    textShadow: 'none', // Eliminamos el sombreado del texto
+    userSelect: 'none', // Evitar la selección de contenido en el texto del encabezado
+  };
+
+  const inputStyle = {
+    fontSize: '18px',
+    marginBottom: '20px',
+    userSelect: 'none', // Evitar la selección de contenido en los campos de texto
+  };
+
   return (
-    <form onSubmit={handleLogin}>
-      <h2>Login</h2>
-      <div>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
+    <Box sx={containerStyle}>
+      <Typography variant="h1" sx={headingStyle}>
+        Login
+      </Typography>
+      <form onSubmit={handleLogin}>
+        {error && <ErrorAlert message={error} />} {/* Mostrar el alerta de error si hay un mensaje de error */}
+        {successMessage && <SuccessAlert message={successMessage} />} {/* Mostrar el alerta de éxito si hay un mensaje de éxito */}
+        <TextField
+          label="Username"
+          variant="outlined"
           value={username}
           required
+          fullWidth
           onChange={(e) => setUsername(e.target.value)}
+          sx={inputStyle}
         />
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
+        <TextField
+          label="Password"
+          variant="outlined"
           type="password"
-          id="password"
           value={password}
           required
+          fullWidth
           onChange={(e) => setPassword(e.target.value)}
+          sx={inputStyle}
         />
-      </div>
-      <button type="submit">Login</button>
-    </form>
+        <Button variant="contained" color="primary" type="submit" fullWidth>
+          Login
+        </Button>
+      </form>
+    </Box>
   );
 }
 
