@@ -28,10 +28,10 @@ function Home() {
   return (
     <Box sx={containerStyle}>
       <Typography variant="h1" sx={headingStyle}>
-        Welcome to My App
+        Bienvenido!
       </Typography>
       <Typography variant="body1" sx={paragraphStyle}>
-        Choose to Login or Register:
+        A la demo de la app Campus Salitre, Inicia Sesión para comenzar
       </Typography>
     </Box>
   );

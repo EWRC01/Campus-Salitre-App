@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(cors());
 
+//Credentials to connect to database
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root', // Change to your MySQL username
@@ -17,6 +18,8 @@ const connection = mysql.createConnection({
   database: 'salitre',
 });
 
+
+//Try to connect to database
 connection.connect((err) => {
   if (err) {
     console.error('Error connecting to MySQL:', err);
@@ -25,6 +28,8 @@ connection.connect((err) => {
   }
 });
 
+
+//API endpoint to login
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
   const query = 'SELECT * FROM users WHERE Username = ? AND User_Password = ?';
@@ -44,6 +49,7 @@ app.post('/api/login', (req, res) => {
   });
 });
 
+//API endpoint to register a new user
 app.post('/api/register', (req, res) => {
   const { username, password } = req.body;
   const query = 'INSERT INTO users (Username, User_Password) VALUES (?, ?)';
@@ -58,6 +64,7 @@ app.post('/api/register', (req, res) => {
   });
 });
 
+//API endpoint to register a new name of crop
 app.post('/api/registertypecultivation', (req, res) => {
   const { nameCultivation } = req.body;
   const query = 'INSERT INTO types_cultivation (Name_Type_Cultivation) VALUES (?)';
@@ -67,6 +74,34 @@ app.post('/api/registertypecultivation', (req, res) => {
       res.status(500).json({error: 'Internal Server Error' });
     } else {
       res.json({ success:true });
+    }
+  });
+});
+
+//API endpoint to get all the type of cultivation
+app.get('/api/types-cultivation', (req, res) => {
+  const query = 'SELECT ID_Type_Cultivation, Name_Type_Cultivation FROM types_cultivation';
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching Crops' , err);
+      res.status(500).json({  error: 'Internal Server Error'  });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+//API endpoint to add data necessary for the crops
+app.post('/api/features-cultivation', (req, res) => {
+  const { ID_Type_Cultivation, Required_Relative_Humidity, Required_Temperature, Required_Oxygen } = req.body;
+  const query = 'INSERT INTO cultivation (ID_Type_Cultivation, Required_Relative_Humidity, Required_Temperature, Required_Oxygen) VALUES (?, ?, ?, ?)';
+  connection.query(query, [ID_Type_Cultivation, Required_Relative_Humidity, Required_Temperature, Required_Oxygen], (err, results) => {
+    if (err) {
+      console.error('Error performing cultivation record insertion:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      // Cultivation record inserted successfully
+      res.json({ success: true });
     }
   });
 });

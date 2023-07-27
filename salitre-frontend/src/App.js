@@ -5,11 +5,13 @@ import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import Home from './Home';
+import FeaturesCultivationForm from './FeauturesCultivationForm';
 import { Box, List, ListItem, ListItemText, ListItemIcon, Drawer, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import LoginIcon from '@mui/icons-material/Login';
 import RegisterCultivation from './RegisterCultivation';
+import CultivationComboBox from './CultivationComboBox';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 
@@ -104,6 +106,8 @@ function App() {
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/" element={<Home />} />
             <Route path="/register-crop" element={<RegisterCultivation />} />
+            <Route path="/types-cultivation" element={<CultivationComboBox/>} />
+            <Route path="/features-crop" element={<FeaturesCultivationForm/>} />
           </Routes>
         </Box>
       </Box>
