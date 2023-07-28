@@ -5,7 +5,7 @@ import ErrorAlert from "./ErrorAlert";
 import SuccessAlert from "./SuccessAlert";
 import { useNavigate } from 'react-router-dom';
 import CultivationComboBox from "./CultivationComboBox";
-
+import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
 function RegisterCultivation() {
   const [nameCultivation, setNameCultivation] = useState('');
   const [error, setError] = useState(null);
@@ -108,12 +108,18 @@ function RegisterCultivation() {
         <span>Agregar el cultivo</span>
         <span>&#43;</span> {/* Icono de más para el botón */}
       </Button>
-      <Button variant="contained"  fullWidth onClick={Redirect} sx={buttonStyle2}>
-        <span>Agregar Requerimientos</span>
-        <span>&#43;</span> {/* Icono de más para el botón */}
+      <Button variant="contained"
+          color="secondary"
+          fullWidth
+          onClick={Redirect}
+          startIcon={<ControlPointDuplicateIcon />} sx={{ buttonStyle}}>
+        
+        Agregar Requerimientos
       </Button>
     </Box>
   );
 }
 
 export default RegisterCultivation;
+
+
