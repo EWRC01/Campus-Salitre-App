@@ -60,13 +60,13 @@ function LoginForm() {
   return (
     <Box sx={containerStyle}>
       <Typography variant="h1" sx={headingStyle}>
-        Login
+        Inicia Sesión
       </Typography>
       <form onSubmit={handleLogin}>
         {error && <ErrorAlert message={error} />} {/* Mostrar el alerta de error si hay un mensaje de error */}
         {successMessage && <SuccessAlert message={successMessage} />} {/* Mostrar el alerta de éxito si hay un mensaje de éxito */}
         <TextField
-          label="Username"
+          label="Usuario"
           variant="outlined"
           value={username}
           required
@@ -75,7 +75,7 @@ function LoginForm() {
           sx={inputStyle}
         />
         <TextField
-          label="Password"
+          label="Contraseña"
           variant="outlined"
           type="password"
           value={password}
@@ -85,7 +85,7 @@ function LoginForm() {
           sx={inputStyle}
         />
         <Button variant="contained" color="primary" type="submit" fullWidth>
-          Login
+          Entrar
         </Button>
       </form>
     </Box>

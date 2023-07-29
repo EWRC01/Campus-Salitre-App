@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import ErrorAlert from "./ErrorAlert";
 
 
@@ -69,24 +69,24 @@ function AllCrops({ selectedCultivation }) {
       {/* Use cultivationData to display the fields */}
       {cultivationData ? (
         <div>
-          <Typography variant="h2" sx={headingStyle}>Cultivation Details</Typography>
+          <Typography variant="h2" sx={headingStyle}>Detalles de Cultivos</Typography>
           <TableContainer sx={tableStyle}>
             <Table>
               <TableBody>
                 <TableRow>
-                  <TableCell sx={tableHeaderCellStyle}>ID_Cultivation:</TableCell>
+                  <TableCell sx={tableHeaderCellStyle}>ID:</TableCell>
                   <TableCell sx={tableCellStyle}>{cultivationData.ID_Cultivation}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell sx={tableHeaderCellStyle}>Required Relative Humidity:</TableCell>
+                  <TableCell sx={tableHeaderCellStyle}>Humedad Relativa Necesaria:</TableCell>
                   <TableCell sx={tableCellStyle}>{cultivationData.Required_Relative_Humidity}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell sx={tableHeaderCellStyle}>Required Temperature:</TableCell>
+                  <TableCell sx={tableHeaderCellStyle}>Temperatura Necesaria:</TableCell>
                   <TableCell sx={tableCellStyle}>{cultivationData.Required_Temperature}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell sx={tableHeaderCellStyle}>Required Oxygen:</TableCell>
+                  <TableCell sx={tableHeaderCellStyle}>Oxigeno Necesario:</TableCell>
                   <TableCell sx={tableCellStyle}>{cultivationData.Required_Oxygen}</TableCell>
                 </TableRow>
               </TableBody>
@@ -94,7 +94,7 @@ function AllCrops({ selectedCultivation }) {
           </TableContainer>
         </div>
       ) : (
-        <Typography variant="h2">No se han registrado detalles para este cultivo</Typography>
+        <Typography variant="h4">No se han registrado detalles para este cultivo</Typography>
       )}
     </Box>
   );

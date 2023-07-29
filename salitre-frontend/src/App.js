@@ -50,19 +50,19 @@ function App() {
               <ListItemIcon sx={{ color: '#fff' }}>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary="Home" />
+              <ListItemText primary="Inicio" />
             </ListItem>
             <ListItem component={Link} to="/login" button sx={{ '&:hover': { backgroundColor: '#555' } }}>
               <ListItemIcon sx={{ color: '#fff' }}>
                 <LoginIcon />
               </ListItemIcon>
-              <ListItemText primary="Login" />
+              <ListItemText primary="Inicia Sesión" />
             </ListItem>
             <ListItem component={Link} to="/register" button sx={{ '&:hover': { backgroundColor: '#555' } }}>
               <ListItemIcon sx={{ color: '#fff' }}>
                 <PersonAddIcon />
               </ListItemIcon>
-              <ListItemText primary="Register" />
+              <ListItemText primary="Registro" />
             </ListItem>
           </List>
         </Box>

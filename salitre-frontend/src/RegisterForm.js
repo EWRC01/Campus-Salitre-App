@@ -51,13 +51,13 @@ function RegisterForm() {
   return (
     <Box sx={containerStyle}>
       <Typography variant="h4" align="center" sx={headingStyle}>
-        Register
+        Registrate
       </Typography>
       <form onSubmit={handleRegister}>
         {error && <ErrorAlert message={error} />} {/* Mostrar el alerta de error si hay un mensaje de error */}
         {successMessage && <SuccessAlert message={successMessage} />} {/* Mostrar el alerta de éxito si hay un mensaje de éxito */}
         <TextField
-          label="Username"
+          label="Usuario"
           variant="outlined"
           value={username}
           required
@@ -66,7 +66,7 @@ function RegisterForm() {
           sx={inputStyle}
         />
         <TextField
-          label="Password"
+          label="Contraseña"
           variant="outlined"
           type="password"
           value={password}
@@ -76,7 +76,7 @@ function RegisterForm() {
           sx={inputStyle}
         />
         <Button variant="contained" color="primary" type="submit" fullWidth>
-          Register
+          Registrar
         </Button>
       </form>
     </Box>
