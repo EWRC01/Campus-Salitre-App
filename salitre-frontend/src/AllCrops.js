@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Box, Typography, TextField, Button } from '@mui/material';
+import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import ErrorAlert from "./ErrorAlert";
-import SuccessAlert from "./SuccessAlert";
+
 
 function AllCrops({ selectedCultivation }) {
   const [cultivationData, setCultivationData] = useState(null);
@@ -41,22 +41,26 @@ function AllCrops({ selectedCultivation }) {
     marginBottom: '20px',
   };
 
-  const labelStyle = {
-    fontSize: '18px',
-    color: '#333',
-    marginBottom: '5px',
+  const tableStyle = {
+    minWidth: 400,
+    marginTop: '20px',
+    border: '1px solid #ccc',
+    borderRadius: '5px',
+    overflow: 'hidden',
   };
 
-  const inputStyle = {
-    fontSize: '16px',
-    color: '#555',
-    padding: '8px',
-    marginBottom: '15px',
-    width: '100%',
-    borderRadius: '5px',
-    border: '1px solid #ccc',
-    outline: 'none',
+  const tableHeaderCellStyle = {
     backgroundColor: '#f5f5f5',
+    fontSize: '18px',
+    fontWeight: 'bold',
+    padding: '10px',
+    borderBottom: '1px solid #ccc',
+  };
+
+  const tableCellStyle = {
+    fontSize: '16px',
+    padding: '10px',
+    borderBottom: '1px solid #ccc',
   };
 
   return (
@@ -66,14 +70,28 @@ function AllCrops({ selectedCultivation }) {
       {cultivationData ? (
         <div>
           <Typography variant="h2" sx={headingStyle}>Cultivation Details</Typography>
-          <Typography variant="subtitle1" sx={labelStyle}>ID_Cultivation:</Typography>
-          <TextField variant="outlined" value={cultivationData.ID_Cultivation} fullWidth disabled sx={inputStyle} />
-          <Typography variant="subtitle1" sx={labelStyle}>Required Relative Humidity:</Typography>
-          <TextField variant="outlined" value={cultivationData.Required_Relative_Humidity} fullWidth disabled sx={inputStyle} />
-          <Typography variant="subtitle1" sx={labelStyle}>Required Temperature:</Typography>
-          <TextField variant="outlined" value={cultivationData.Required_Temperature} fullWidth disabled sx={inputStyle} />
-          <Typography variant="subtitle1" sx={labelStyle}>Required Oxygen:</Typography>
-          <TextField variant="outlined" value={cultivationData.Required_Oxygen} fullWidth disabled sx={inputStyle} />
+          <TableContainer sx={tableStyle}>
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableCell sx={tableHeaderCellStyle}>ID_Cultivation:</TableCell>
+                  <TableCell sx={tableCellStyle}>{cultivationData.ID_Cultivation}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell sx={tableHeaderCellStyle}>Required Relative Humidity:</TableCell>
+                  <TableCell sx={tableCellStyle}>{cultivationData.Required_Relative_Humidity}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell sx={tableHeaderCellStyle}>Required Temperature:</TableCell>
+                  <TableCell sx={tableCellStyle}>{cultivationData.Required_Temperature}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell sx={tableHeaderCellStyle}>Required Oxygen:</TableCell>
+                  <TableCell sx={tableCellStyle}>{cultivationData.Required_Oxygen}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
       ) : (
         <Typography variant="h2">No se han registrado detalles para este cultivo</Typography>
