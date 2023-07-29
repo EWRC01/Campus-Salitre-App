@@ -108,7 +108,7 @@ app.post('/api/features-cultivation', (req, res) => {
 
 //API Endpoint to get data from the features crops
 app.get('/api/all-crops', (req, res) => {
-  const {ID_Type_Cultivation} = req.que
+  const {ID_Type_Cultivation} = req.query
   const query = 'SELECT * FROM cultivation WHERE ID_Type_Cultivation = ?';
   connection.query(query, [ID_Type_Cultivation], (err, results) => {
     if(err) {
