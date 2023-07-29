@@ -12,6 +12,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import LoginIcon from '@mui/icons-material/Login';
 import RegisterCultivation from './RegisterCultivation';
 import CultivationComboBox from './CultivationComboBox';
+import CultivationDetails from './CultivationDetails';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 
@@ -108,6 +109,7 @@ function App() {
             <Route path="/register-crop" element={<RegisterCultivation />} />
             <Route path="/types-cultivation" element={<CultivationComboBox/>} />
             <Route path="/features-crop" element={<FeaturesCultivationForm/>} />
+            <Route path="/cultivation-details" element={<CultivationDetails/>} />
           </Routes>
         </Box>
       </Box>

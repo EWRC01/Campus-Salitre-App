@@ -106,6 +106,20 @@ app.post('/api/features-cultivation', (req, res) => {
   });
 });
 
+//API Endpoint to get data from the features crops
+app.get('/api/all-crops', (req, res) => {
+  const {ID_Type_Cultivation} = req.que
+  const query = 'SELECT * FROM cultivation WHERE ID_Type_Cultivation = ?';
+  connection.query(query, [ID_Type_Cultivation], (err, results) => {
+    if(err) {
+      console.error('Error fetching all crops', err);
+      res.status(500).json({error:'Internal Server Error'});
+    } else {
+      res.json(results);
+    }
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });

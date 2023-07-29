@@ -54,22 +54,6 @@ function RegisterCultivation() {
   };
 
   
-  const buttonStyle2 = {
-    fontSize: '18px',
-    padding: '10px 20px',
-    borderRadius: '5px',
-    backgroundColor: '#567665',
-    color: '#fff',
-    border: 'none',
-    cursor: 'pointer',
-    width: '100%',
-    outline: 'none',
-    userSelect: 'none',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: '10px', // Agrega un espacio entre los botones
-  };
 
  
   const handleCultivationRegister = (e) => {
@@ -104,7 +88,7 @@ function RegisterCultivation() {
         onChange={(e) => setNameCultivation(e.target.value)}
         sx={inputStyle}
       />
-      <Button variant="contained" color="primary" type="submit" fullWidth sx={buttonStyle}>
+      <Button variant="contained" onClick={handleCultivationRegister} color="primary" type="submit" fullWidth sx={buttonStyle}>
         <span>Agregar el cultivo</span>
         <span>&#43;</span> {/* Icono de más para el botón */}
       </Button>

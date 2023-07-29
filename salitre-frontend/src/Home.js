@@ -33,6 +33,8 @@ function Home() {
       <Typography variant="body1" sx={paragraphStyle}>
         A la demo de la app Campus Salitre, Inicia Sesión para comenzar
       </Typography>
+      <a href='/cultivation-details'>Revisa los requerimientos de los cultivos existentes</a>
+
     </Box>
   );
 }
