@@ -147,6 +147,28 @@ app.get('/api/get-sensors', (req, res) => {
   });
 });
 
+app.post('/api/add-sensor-data', (req, res) => {
+  const {
+    ID_Cultivation,
+    ID_Sensor,
+    Hour,
+    Date,
+    Relative_Temperature_Crop,
+    Relative_Humidity_Crop,
+    Crop_Moisture
+ } = req.body;
+
+  const query = 'INSERT INTO Irrigation_System (ID_Cultivation, ID_Sensor, Hour, Date, Relative_Temperature_Crop, Relative_Humidity_Crop, Crop_Moisture) VALUES (?, ?, ?, ?, ?, ?, ?)';
+  connection.query(query, [ID_Cultivation, ID_Sensor, Hour, Date, Relative_Temperature_Crop, Relative_Humidity_Crop, Crop_Moisture], (err, results) => {
+    if (err) {
+      console.error('Error adding sensor data:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      res.json({ success: true });
+    }
+  });
+});
+
 
 
 app.listen(PORT, () => {
