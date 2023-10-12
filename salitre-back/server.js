@@ -14,7 +14,7 @@ app.use(cors());
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root', // Change to your MySQL username
-  password: '', // Change to your MySQL password
+  password: 'usbw', // Change to your MySQL password
   database: 'salitre',
 });
 
@@ -119,6 +119,35 @@ app.get('/api/all-crops', (req, res) => {
     }
   });
 });
+
+// Add this new API endpoint
+app.post('/api/add-sensor', (req, res) => {
+  const { Sensor_Name, Sensor_Status, Sensor_Description } = req.body;
+  const query = 'INSERT INTO sensors (Sensor_Name, Sensor_Status, Sensor_Description) VALUES (?, ?, ?)';
+  connection.query(query, [Sensor_Name, Sensor_Status, Sensor_Description], (err, results) => {
+    if (err) {
+      console.error('Error adding sensor:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      res.json({ success: true });
+    }
+  });
+});
+
+//API endpoint to get all the sensors
+app.get('/api/get-sensors', (req, res) => {
+  const query = 'SELECT ID_Sensor, Sensor_Name, Sensor_Status, Sensor_Description FROM sensors';
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching Crops' , err);
+      res.status(500).json({  error: 'Internal Server Error'  });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);

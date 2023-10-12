@@ -14,6 +14,9 @@ import RegisterCultivation from './RegisterCultivation';
 import CultivationComboBox from './CultivationComboBox';
 import CultivationDetails from './CultivationDetails';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import AddSignal from '@mui/icons-material/Add';
+import AddSensor from './addSensors';
+import SensorsComboBox from './SensorsComboBox';
 
 
 
@@ -64,6 +67,18 @@ function App() {
               </ListItemIcon>
               <ListItemText primary="Registro" />
             </ListItem>
+            <ListItem component={Link} to="/add-sensor" button  sx={{ '&:hover': { backgroundColor: '#555' } }}>
+                <ListItemIcon>
+                <AddSignal sx={{ color: '#fff' }} />
+                </ListItemIcon>
+                <ListItemText primary="Add Sensor" />
+              </ListItem>
+              <ListItem component={Link} to="/get-sensors" button sx={{ '&:hover': { backgroundColor: '#555' } }}>
+                <ListItemIcon>
+                <AddSignal sx={{ color: '#fff' }} />
+                </ListItemIcon>
+                <ListItemText primary="See all sensors" />
+              </ListItem>
           </List>
         </Box>
 
@@ -96,6 +111,18 @@ function App() {
                 </ListItemIcon>
                 <ListItemText primary="Register" />
               </ListItem>
+              <ListItem component={Link} to="/add-sensor" button onClick={toggleMenu} sx={{ '&:hover': { backgroundColor: '#d6d7d8' } }}>
+                <ListItemIcon>
+                <AddSignal />
+                </ListItemIcon>
+                <ListItemText primary="Add Sensor" />
+              </ListItem>
+              <ListItem component={Link} to="/get-sensors" button onClick={toggleMenu} sx={{ '&:hover': { backgroundColor: '#d6d7d8' } }}>
+                <ListItemIcon>
+                <AddSignal />
+                </ListItemIcon>
+                <ListItemText primary="See all sensors" />
+              </ListItem>
             </List>
           </Drawer>
         </Box>
@@ -110,6 +137,8 @@ function App() {
             <Route path="/types-cultivation" element={<CultivationComboBox/>} />
             <Route path="/features-crop" element={<FeaturesCultivationForm/>} />
             <Route path="/cultivation-details" element={<CultivationDetails/>} />
+            <Route path="/add-sensor" element={<AddSensor/>}/>
+            <Route path="/get-sensors" element={<SensorsComboBox/>} />
           </Routes>
         </Box>
       </Box>
