@@ -169,6 +169,33 @@ app.post('/api/add-sensor-data', (req, res) => {
   });
 });
 
+// Modify the API endpoint to get sensor data for a specific date, including the sensor name
+app.get('/api/sensor-data/:date', (req, res) => {
+  const requestedDate = req.params.date; // Get the date from the URL parameter
+
+  const query = `
+    SELECT sensors.Sensor_Name, Irrigation_System.Date, Irrigation_System.Hour, Irrigation_System.Relative_Temperature_Crop, Irrigation_System.Relative_Humidity_Crop
+    FROM Irrigation_System
+    JOIN sensors ON Irrigation_System.ID_Sensor = sensors.ID_Sensor
+    WHERE Irrigation_System.Date = ?
+    ORDER BY Irrigation_System.Hour DESC
+    LIMIT 10
+  `;
+
+  connection.query(query, [requestedDate], (err, dataResults) => {
+    if (err) {
+      console.error('Error fetching sensor data:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      // Send the formatted data as a JSON response
+      res.json(dataResults);
+    }
+  });
+});
+
+
+
+
 
 
 app.listen(PORT, () => {

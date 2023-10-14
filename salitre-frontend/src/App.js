@@ -17,6 +17,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AddSignal from '@mui/icons-material/Add';
 import AddSensor from './addSensors';
 import SensorsComboBox from './SensorsComboBox';
+import SensorChart from './sensorChart';
 
 
 
@@ -79,6 +80,12 @@ function App() {
                 </ListItemIcon>
                 <ListItemText primary="See all sensors" />
               </ListItem>
+              <ListItem component={Link} to="/charts" button sx={{ '&:hover': { backgroundColor: '#555' } }}>
+                <ListItemIcon>
+                <AddSignal sx={{ color: '#fff' }} />
+                </ListItemIcon>
+                <ListItemText primary="Charts" />
+              </ListItem>
           </List>
         </Box>
 
@@ -123,6 +130,12 @@ function App() {
                 </ListItemIcon>
                 <ListItemText primary="See all sensors" />
               </ListItem>
+              <ListItem component={Link} to="/charts" button onClick={toggleMenu} sx={{ '&:hover': { backgroundColor: '#d6d7d8' } }}>
+                <ListItemIcon>
+                <AddSignal />
+                </ListItemIcon>
+                <ListItemText primary="Charts" />
+              </ListItem>
             </List>
           </Drawer>
         </Box>
@@ -139,6 +152,7 @@ function App() {
             <Route path="/cultivation-details" element={<CultivationDetails/>} />
             <Route path="/add-sensor" element={<AddSensor/>}/>
             <Route path="/get-sensors" element={<SensorsComboBox/>} />
+            <Route path="/charts" element={<SensorChart/>} />
           </Routes>
         </Box>
       </Box>
