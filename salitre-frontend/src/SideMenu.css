@@ -1,0 +1,18 @@
+
+
+@media (max-width: 768px) {
+  .sideMenuStyle {
+    width: '100%'; /* Cambia el ancho del menú al 100% */
+    position: 'fixed'; /* Fija la posición del menú */
+    bottom: '0'; /* Coloca el menú en la parte inferior de la pantalla */
+  }
+}
+
+/* Estilos para pantallas con un ancho máximo de 425px (teléfonos móviles) */
+@media (max-width: 425px) {
+  .sideMenuStyle {
+    width: '100%'; /* Cambia el ancho del menú al 100% */
+    position: 'fixed'; /* Fija la posición del menú */
+    bottom: '0'; /* Coloca el menú en la parte inferior de la pantalla */
+  }
+}

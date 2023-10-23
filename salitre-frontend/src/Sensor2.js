@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import * as d3 from 'd3';
@@ -10,7 +11,7 @@ const day = String(currentDate.getDate()).padStart(2, '0');
 const formattedDate = `${year}-${month}-${day}`;
 const testDate = `2023-10-12`;
 
-const SensorChart = () => {
+const Sensor2 = () => {
   const [sensorData, setSensorData] = useState([]);
 
   useEffect(() => {
@@ -28,14 +29,14 @@ const SensorChart = () => {
 
   const createChart = (data) => {
     // Remove existing chart
-    d3.select('#sensor-chart').selectAll('*').remove();
+    d3.select('#sensor-chart2').selectAll('*').remove();
 
     // Define your chart dimensions
     const width = 550;
     const height = 300;
     const margin = { top: 50, right: 20, bottom: 40, left: 80 };
 
-    const svg = d3.select('#sensor-chart').append('svg')
+    const svg = d3.select('#sensor-chart2').append('svg')
       .attr('width', width)
       .attr('height', height);
 
@@ -61,7 +62,7 @@ const SensorChart = () => {
 
     // Create scales for y (temperature)
     const yScale = d3.scaleLinear()
-      .domain([0, d3.max(last10Data, entry => entry.Relative_Temperature_Crop)])
+      .domain([0, d3.max(last10Data, entry => entry.Relative_Humidity_Crop)])
       .nice()
       .range([height - margin.bottom, margin.top]);
 
@@ -84,7 +85,7 @@ const SensorChart = () => {
    // Define line generator function.
    var lineGenerator = d3.line()
      .x((entry) => xScale(entry.Hour))
-     .y((entry) => yScale(entry.Relative_Temperature_Crop));
+     .y((entry) => yScale(entry.Relative_Humidity_Crop));
 
    svg.append("path")
      .datum(last10Data)
@@ -97,7 +98,7 @@ const SensorChart = () => {
      .enter()
      .append("circle")
      .attr("cx", (entry) => xScale(entry.Hour))
-     .attr("cy", (entry) => yScale(entry.Relative_Temperature_Crop))
+     .attr("cy", (entry) => yScale(entry.Relative_Humidity_Crop))
      .attr("r", 5)
      .attr("fill", "steelblue");
 
@@ -106,8 +107,8 @@ const SensorChart = () => {
      .enter()
      .append("text")
      .attr("x", (entry) => xScale(entry.Hour))
-     .attr("y", (entry) => yScale(entry.Relative_Temperature_Crop) - 10)
-     .text((entry) => entry.Relative_Temperature_Crop.toFixed(2))
+     .attr("y", (entry) => yScale(entry.Relative_Humidity_Crop) - 10)
+     .text((entry) => entry.Relative_Humidity_Crop.toFixed(2))
      .style("font-size", "7px")
      .style("fill", "#333");
 
@@ -126,11 +127,11 @@ const SensorChart = () => {
      .attr('transform', 'rotate(-90)')
      .style("font-size", "12px")
      .attr('text-anchor', 'middle')
-     .text('Temperatura Relativa');
+     .text('Humedad Relativa');
   };
 
   return (
-    <div id="sensor-chart">
+    <div id="sensor-chart2">
     
     </div>
 
@@ -138,4 +139,8 @@ const SensorChart = () => {
   );
 };
 
-export default SensorChart;
+
+
+export default Sensor2;
+
+

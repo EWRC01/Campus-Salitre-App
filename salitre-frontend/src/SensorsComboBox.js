@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { Select, MenuItem } from '@mui/material';
-
+import { Box, Typography, TextField, Button } from '@mui/material';
 function SensorsComboBox({ name, value, onChange }) {
   const [sensors, setSensors] = useState([]);
 
   const comboBoxStyle = {
-    padding: '6px 12px', // Ajusta el padding para reducir el tamaño del ComboBox
-    borderRadius: '5px',
-    backgroundColor: '#f5f5f5',
-    width: '100%',
-    outline: 'none',
+    maxWidth: '500px',
+    
+    margin: '0 auto',
+    padding: '20px',
+    borderRadius: '10px',
+    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+    backgroundColor: '#ffffff',
     userSelect: 'none',
-    fontSize: '14px', // Ajusta el tamaño de fuente para reducir el tamaño del texto
   };
 
   useEffect(() => {
@@ -27,6 +28,7 @@ function SensorsComboBox({ name, value, onChange }) {
   }, []);
 
   return (
+   
     <Select
       name={name}
       value={value}
@@ -45,6 +47,7 @@ function SensorsComboBox({ name, value, onChange }) {
         </MenuItem>
       ))}
     </Select>
+    
   );
 }
 

@@ -1,161 +1,50 @@
-// src/App.js (updated for React Router v6)
-// src/App.js (updated for React Router v6)
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import LoginForm from './LoginForm';
-import RegisterForm from './RegisterForm';
+import SideMenu from './SideMenu';
 import Home from './Home';
+import RegisterForm from './RegisterForm';
 import FeaturesCultivationForm from './FeauturesCultivationForm';
-import { Box, List, ListItem, ListItemText, ListItemIcon, Drawer, IconButton } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import HomeIcon from '@mui/icons-material/Home';
-import LoginIcon from '@mui/icons-material/Login';
 import RegisterCultivation from './RegisterCultivation';
 import CultivationComboBox from './CultivationComboBox';
 import CultivationDetails from './CultivationDetails';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import AddSignal from '@mui/icons-material/Add';
 import AddSensor from './addSensors';
 import SensorsComboBox from './SensorsComboBox';
 import SensorChart from './sensorChart';
-
-
+import AllCrops from './AllCrops';
+import './App.css'; // Importa tu archivo CSS
 
 function App() {
-  const [isMenuOpen, setMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setMenuOpen(!isMenuOpen);
-  };
+  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isAuthenticated') === 'true');
 
   return (
     <Router>
-      <Box sx={{ display: 'flex' }}>
-        {/* Side menu */}
-        <Box
-          component="nav"
-          sx={{
-            backgroundColor: '#131A41',
-            color: '#fff',
-            minWidth: '10vh',
-            padding: '20px',
-            height: '100vh',
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            display: { xs: 'none', md: 'block' }, // Ocultar en pantallas pequeñas (celular) y mostrar en pantallas medianas y grandes (tablet, computadoras)
-            '&:hover': {
-              boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)', // Sombra al hacer hover
-            },
-          }}
-        >
-          <List sx={{ '& a': { color: '#fff', textDecoration: 'none' } }}>
-            <ListItem component={Link} to="/" button sx={{ '&:hover': { backgroundColor: '#555'} }}>
-              <ListItemIcon sx={{ color: '#fff' }}>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inicio" />
-            </ListItem>
-            <ListItem component={Link} to="/login" button sx={{ '&:hover': { backgroundColor: '#555' } }}>
-              <ListItemIcon sx={{ color: '#fff' }}>
-                <LoginIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inicia Sesión" />
-            </ListItem>
-            <ListItem component={Link} to="/register" button sx={{ '&:hover': { backgroundColor: '#555' } }}>
-              <ListItemIcon sx={{ color: '#fff' }}>
-                <PersonAddIcon />
-              </ListItemIcon>
-              <ListItemText primary="Registro" />
-            </ListItem>
-            <ListItem component={Link} to="/add-sensor" button  sx={{ '&:hover': { backgroundColor: '#555' } }}>
-                <ListItemIcon>
-                <AddSignal sx={{ color: '#fff' }} />
-                </ListItemIcon>
-                <ListItemText primary="Add Sensor" />
-              </ListItem>
-              <ListItem component={Link} to="/get-sensors" button sx={{ '&:hover': { backgroundColor: '#555' } }}>
-                <ListItemIcon>
-                <AddSignal sx={{ color: '#fff' }} />
-                </ListItemIcon>
-                <ListItemText primary="See all sensors" />
-              </ListItem>
-              <ListItem component={Link} to="/charts" button sx={{ '&:hover': { backgroundColor: '#555' } }}>
-                <ListItemIcon>
-                <AddSignal sx={{ color: '#fff' }} />
-                </ListItemIcon>
-                <ListItemText primary="Charts" />
-              </ListItem>
-          </List>
-        </Box>
+      <div className="app-container" style={{ display: 'flex', flexDirection: 'column' }}>
 
+        <div className="menu-container">
+          {isAuthenticated && <SideMenu setIsAuthenticated={setIsAuthenticated} />}
+        </div>
+        <div className="content-container" >
 
-
-
-
-        {/* Mobile menu */}
-        <Box sx={{ display: { xs: 'block', md: 'none' }, padding: '10px' }}>
-          <IconButton onClick={toggleMenu} color="inherit" aria-label="open drawer">
-            <MenuIcon />
-          </IconButton>
-          <Drawer anchor="left" open={isMenuOpen} onClose={toggleMenu}>
-            <List sx={{ width: '200px' }}>
-              <ListItem component={Link} to="/" button onClick={toggleMenu} sx={{ '&:hover': { backgroundColor: '#d6d7d8' } }}>
-                <ListItemIcon>
-                  <HomeIcon />
-                </ListItemIcon>
-                <ListItemText primary="Home" />
-              </ListItem>
-              <ListItem component={Link} to="/login" button onClick={toggleMenu} sx={{ '&:hover': { backgroundColor: '#d6d7d8' } }}>
-                <ListItemIcon>
-                  <LoginIcon />
-                </ListItemIcon>
-                <ListItemText primary="Login" />
-              </ListItem>
-              <ListItem component={Link} to="/register" button onClick={toggleMenu} sx={{ '&:hover': { backgroundColor: '#d6d7d8' } }}>
-                <ListItemIcon>
-                <PersonAddIcon />
-                </ListItemIcon>
-                <ListItemText primary="Register" />
-              </ListItem>
-              <ListItem component={Link} to="/add-sensor" button onClick={toggleMenu} sx={{ '&:hover': { backgroundColor: '#d6d7d8' } }}>
-                <ListItemIcon>
-                <AddSignal />
-                </ListItemIcon>
-                <ListItemText primary="Add Sensor" />
-              </ListItem>
-              <ListItem component={Link} to="/get-sensors" button onClick={toggleMenu} sx={{ '&:hover': { backgroundColor: '#d6d7d8' } }}>
-                <ListItemIcon>
-                <AddSignal />
-                </ListItemIcon>
-                <ListItemText primary="See all sensors" />
-              </ListItem>
-              <ListItem component={Link} to="/charts" button onClick={toggleMenu} sx={{ '&:hover': { backgroundColor: '#d6d7d8' } }}>
-                <ListItemIcon>
-                <AddSignal />
-                </ListItemIcon>
-                <ListItemText primary="Charts" />
-              </ListItem>
-            </List>
-          </Drawer>
-        </Box>
-
-        {/* Content */}
-        <Box sx={{ flexGrow: 1, height: '100vh', padding: '20px', backgroundColor: '#f5f5f5', marginLeft: { xs: 0, md: '130px' } }}>
           <Routes>
-            <Route path="/login" element={<LoginForm />} />
+            <Route path="/login" element={isAuthenticated ? <Navigate to="/" /> : <LoginForm setIsAuthenticated={setIsAuthenticated} />} />
             <Route path="/register" element={<RegisterForm />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/register-crop" element={<RegisterCultivation />} />
-            <Route path="/types-cultivation" element={<CultivationComboBox/>} />
-            <Route path="/features-crop" element={<FeaturesCultivationForm/>} />
-            <Route path="/cultivation-details" element={<CultivationDetails/>} />
-            <Route path="/add-sensor" element={<AddSensor/>}/>
-            <Route path="/get-sensors" element={<SensorsComboBox/>} />
-            <Route path="/charts" element={<SensorChart/>} />
+            <Route path="/features-crop" element={isAuthenticated ? <FeaturesCultivationForm /> : <Navigate to="/login" replace />} />
+            <Route path="/register-crop" element={isAuthenticated ? <RegisterCultivation /> : <Navigate to="/login" replace />} />
+            <Route path="/types-cultivation" element={isAuthenticated ? <CultivationComboBox /> : <Navigate to="/login" replace />} />
+            <Route path="/cultivation-details" element={isAuthenticated ? <CultivationDetails /> : <Navigate to="/login" replace />} />
+            <Route path="/all-crops" element={isAuthenticated ? <AllCrops /> : <Navigate to="/login" replace />} />
+            <Route path="/add-sensor" element={isAuthenticated ? <AddSensor /> : <Navigate to="/login" replace />} />
+            <Route path="/get-sensors" element={isAuthenticated ? <SensorsComboBox /> : <Navigate to="/login" replace />} />
+            <Route path="/charts" element={isAuthenticated ? <SensorChart /> : <Navigate to="/login" replace />} />
+            <Route path="/" element={isAuthenticated ? (
+              <>
+                <Home />
+              </>
+            ) : <Navigate to="/login" replace />} />
           </Routes>
-        </Box>
-      </Box>
+        </div>
+      </div>
     </Router>
   );
 }

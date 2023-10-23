@@ -17,13 +17,14 @@ function RegisterCultivation() {
   }
 
   const containerStyle = {
+  
     maxWidth: '400px',
     margin: '0 auto',
     padding: '20px',
     borderRadius: '10px',
     boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
     backgroundColor: '#ffffff',
-    userSelect: 'none', // Evita que se pueda seleccionar el contenido
+    userSelect: 'none',
   };
 
   const headingStyle = {
@@ -93,7 +94,7 @@ function RegisterCultivation() {
         <span>&#43;</span> {/* Icono de más para el botón */}
       </Button>
       <Button variant="contained"
-          color="secondary"
+          color="warning"
           fullWidth
           onClick={Redirect}
           startIcon={<ControlPointDuplicateIcon />} sx={{ buttonStyle}}>

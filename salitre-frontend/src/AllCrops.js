@@ -27,12 +27,12 @@ function AllCrops({ selectedCultivation }) {
 
   const containerStyle = {
     maxWidth: '400px',
-    margin: '20px auto',
+    margin: '0 auto',
     padding: '20px',
     borderRadius: '10px',
     boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
     backgroundColor: '#ffffff',
-    userSelect: 'none', // Evita que se pueda seleccionar el contenido
+    userSelect: 'none',
   };
 
   const headingStyle = {
@@ -42,7 +42,7 @@ function AllCrops({ selectedCultivation }) {
   };
 
   const tableStyle = {
-    minWidth: 400,
+   
     marginTop: '20px',
     border: '1px solid #ccc',
     borderRadius: '5px',

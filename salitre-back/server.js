@@ -174,7 +174,7 @@ app.get('/api/sensor-data/:date', (req, res) => {
   const requestedDate = req.params.date; // Get the date from the URL parameter
 
   const query = `
-    SELECT sensors.Sensor_Name, Irrigation_System.Date, Irrigation_System.Hour, Irrigation_System.Relative_Temperature_Crop, Irrigation_System.Relative_Humidity_Crop
+    SELECT sensors.Sensor_Name, Irrigation_System.Date, Irrigation_System.Hour, Irrigation_System.Relative_Temperature_Crop, Irrigation_System.Relative_Humidity_Crop, Irrigation_System.Crop_Moisture
     FROM Irrigation_System
     JOIN sensors ON Irrigation_System.ID_Sensor = sensors.ID_Sensor
     WHERE Irrigation_System.Date = ?

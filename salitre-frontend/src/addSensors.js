@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios'; // Import Axios
+import axios from 'axios';
+import { Box, Typography, TextField, Button } from '@mui/material';
 
 class AddSensor extends Component {
   constructor() {
@@ -19,7 +20,6 @@ class AddSensor extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // Send a POST request to the server to add the new sensor using Axios
     axios.post('http://localhost:5000/api/add-sensor', this.state)
       .then(response => {
         console.log(response.data);
@@ -31,25 +31,68 @@ class AddSensor extends Component {
   }
 
   render() {
+    const containerStyle = {
+    maxWidth: '400px',
+    margin: '0 auto',
+    padding: '20px',
+    borderRadius: '10px',
+    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+    backgroundColor: '#ffffff',
+    userSelect: 'none',
+    };
+
+    const headingStyle = {
+      fontSize: '36px',
+      color: '#333',
+      marginBottom: '20px',
+      textShadow: 'none',
+      userSelect: 'none',
+    };
+
+    const inputStyle = {
+      fontSize: '18px',
+      marginBottom: '20px',
+      userSelect: 'none',
+    };
+
     return (
-      <div>
-        <h2>Add Sensor</h2>
+      <Box sx={containerStyle}>
+        <Typography variant="h1" sx={headingStyle}>
+          Agregar Sensor
+        </Typography>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Sensor Name:
-            <input type="text" name="Sensor_Name" value={this.state.Sensor_Name} onChange={this.handleChange} />
-          </label>
-          <label>
-            Sensor Status:
-            <input type="text" name="Sensor_Status" value={this.state.Sensor_Status} onChange={this.handleChange} />
-          </label>
-          <label>
-            Sensor Description:
-            <textarea name="Sensor_Description" value={this.state.Sensor_Description} onChange={this.handleChange} />
-          </label>
-          <button type="submit">Add Sensor</button>
+          <TextField
+            label="Nombre del Sensor"
+            variant="outlined"
+            name="Sensor_Name"
+            value={this.state.Sensor_Name}
+            fullWidth
+            onChange={this.handleChange}
+            sx={inputStyle}
+          />
+          <TextField
+            label="Estado del Sensor"
+            variant="outlined"
+            name="Sensor_Status"
+            value={this.state.Sensor_Status}
+            fullWidth
+            onChange={this.handleChange}
+            sx={inputStyle}
+          />
+          <TextField
+            label="Descripción del Sensor"
+            variant="outlined"
+            name="Sensor_Description"
+            value={this.state.Sensor_Description}
+            fullWidth
+            onChange={this.handleChange}
+            sx={inputStyle}
+          />
+          <Button variant="contained" color="primary" type="submit" fullWidth>
+            Agregar Sensor
+          </Button>
         </form>
-      </div>
+      </Box>
     );
   }
 }

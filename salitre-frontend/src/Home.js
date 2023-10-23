@@ -1,41 +1,33 @@
-// src/Home.js
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import SensorChart from './sensorChart';
+import Sensor2 from './Sensor2';
+import Sensor3 from './Sensor3';
+import { Box, Typography, TextField, Button } from '@mui/material';
+import SensorsComboBox from './SensorsComboBox';
+
 
 function Home() {
-  const containerStyle = {
-    maxWidth: '400px',
-    margin: '0 auto',
-    padding: '50px',
-    borderRadius: '10px',
-    backgroundColor: '#ffffff', 
-    userSelect: 'none', 
-  };
-
-  const headingStyle = {
-    fontSize: '36px',
-    color: '#333',
-    marginBottom: '20px',
-    textShadow: 'none', 
-  };
-
-  const paragraphStyle = {
-    fontSize: '18px',
-    color: '#666',
-    textShadow: 'none', 
-  };
-
   return (
-    <Box sx={containerStyle}>
-      <Typography variant="h1" sx={headingStyle}>
-        Bienvenido!
-      </Typography>
-      <Typography variant="body1" sx={paragraphStyle}>
-        A la demo de la app Campus Salitre, Inicia Sesión para comenzar
-      </Typography>
-      <a href='/cultivation-details'>Revisa los requerimientos de los cultivos existentes</a>
+    <div className='container'>
+     
 
-    </Box>
+      <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }} >
+     
+        
+       
+        <div className='container-sensor'>
+        <SensorsComboBox />
+        </div>
+          <SensorChart sx={{ color: '#333' }} />
+          <Sensor2 sx={{ color: '#333' }} />
+          <Sensor3 sx={{ color: '#333' }} />
+       
+        
+      
+          
+       
+      </Box>
+    </div>
   );
 }
 
